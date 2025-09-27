@@ -1,0 +1,177 @@
+import React, { useState, useEffect, useRef, useCallback } from 'react';
+import './Home.css';
+import './EnhancedAnimations.css';
+import './InteractiveEffects.js';
+import CountdownTimer from './CountdownTimer';
+
+const Home = () => {
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [touchStart, setTouchStart] = useState(0);
+  const [touchEnd, setTouchEnd] = useState(0);
+  const slideInterval = useRef();
+  const touchThreshold = 50;
+
+
+  // Headlines array
+  const slides = [
+    {
+      title: "UPHARMORA - 1.0",
+      subtitle: "NATIONAL CONFERENCE (FIHTNFPS - 2025) ",
+      description: "Fostering Innovation for a Healthier Tomorrow: Navigating the Future of Pharmaceutical Sciences",
+      theme: "7th to 8th November 2025",
+      organizer: "FACULTY OF PHARMACY, UNITED UNIVERSITY PRAYAGRAJ",
+      backgroundImage: "/images/uu2.png",
+      textColor: "#ffffff"
+    },
+    {
+      title: "UPHARMORA - 1.0",
+      subtitle: "NATIONAL CONFRENCE (FIHTNFPS - 2025) ",
+      description: "Fostering Innovation for a Healthier Tomorrow: Navigating the Future of Pharmaceutical Sciences",
+      theme: "7th to 8th November 2025",
+      organizer: "FACULTY OF PHARMACY, UNITED UNIVERSITY PRAYAGRAJ",
+      backgroundImage: "/images/uu1.png"
+    }
+  ];
+
+
+  const stopSlideShow = useCallback(() => {
+    if (slideInterval.current) {
+      clearInterval(slideInterval.current);
+    }
+  }, []);
+
+  const startSlideShow = useCallback(() => {
+    stopSlideShow();
+    slideInterval.current = setInterval(() => {
+      setCurrentSlide(prev => (prev + 1) % slides.length);
+    }, 5000);
+  }, [stopSlideShow, slides.length]);
+
+  // Touch event handlers
+  const handleTouchStart = useCallback((e) => {
+    setTouchStart(e.targetTouches[0].clientX);
+  }, []);
+
+  const handleTouchMove = useCallback((e) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  }, []);
+
+  const handleTouchEnd = useCallback(() => {
+    if (touchStart - touchEnd > touchThreshold) {
+      setCurrentSlide(prev => (prev + 1) % slides.length);
+    } else if (touchEnd - touchStart > touchThreshold) {
+      setCurrentSlide(prev => (prev - 1 + slides.length) % slides.length);
+    }
+  }, [touchStart, touchEnd, slides.length, touchThreshold]);
+
+  // Set up and clean up interval
+  useEffect(() => {
+    startSlideShow();
+    return () => {
+      stopSlideShow();
+    };
+  }, [startSlideShow, stopSlideShow]);
+
+  return (
+    <div className="home-container">
+      {/* Welcome Section with Slideshow */}
+      <section className="welcome-section">
+        <div className="slideshow-container">
+          <div
+            className="slideshow"
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
+          >
+            {slides.map((slide, index) => (
+              <div
+                key={index}
+                className={`slide ${index === currentSlide ? 'active' : ''}`}
+                style={{
+                  backgroundImage: `url(${slide.backgroundImage})`,
+                  color: slide.textColor || '#000'
+                }}
+              >
+                <div className="slide-overlay"></div>
+                <div className="slide-content">
+                  <h1 className="slide-title">{slide.title}</h1>
+                  <h2 className="slide-subtitle">{slide.subtitle}</h2>
+
+
+                  <p className="slide-description">{slide.description}</p>
+                  <p className="slide-theme">{slide.theme}</p>
+                  <p className="slide-organizer">{slide.organizer}</p>
+
+                  {/* Countdown Timer */}
+                  <CountdownTimer />
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Navigation Arrows */}
+          <button
+            className="control-btn prev"
+            onClick={() => setCurrentSlide(prev => (prev - 1 + slides.length) % slides.length)}
+            aria-label="Previous slide"
+          >
+            &lt;
+          </button>
+          <button
+            className="control-btn next"
+            onClick={() => setCurrentSlide(prev => (prev + 1) % slides.length)}
+            aria-label="Next slide"
+          >
+            &gt;
+          </button>
+
+          {/* Slide Indicators */}
+          <div className="slide-indicators">
+            {slides.map((_, index) => (
+              <button
+                key={index}
+                className={`indicator ${index === currentSlide ? 'active' : ''}`}
+                onClick={() => setCurrentSlide(index)}
+                aria-label={`Go to slide ${index + 1}`}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* About Section */}
+      <section className="about-section">
+        <div className="about-content">
+          <h2 className="section-title">About United University</h2>
+          <div className="content-text">
+            <p>United University is a dynamic and emerging multidisciplinary institution, established under the <em>Private University Act</em> and duly approved by the State Government. The university has been founded with a vision to promote excellence in education, research, and training across a wide range of academic disciplines including Arts, Sciences, Commerce, Engineering, Management, Agriculture, and Mass Communication.</p>
+
+            <p>Committed to academic innovation and holistic development, United University strives to be at the forefront of learning, teaching, and research. With a strong emphasis on quality education and industry relevance, the university aims to nurture skilled professionals who will contribute meaningfully to national growth and global progress.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* Faculty of Pharmacy Section */}
+      <section className="faculty-pharmacy-section">
+        <div className="faculty-content">
+          <h2 className="section-title gradient-title">ABOUT FACULTY OF PHARMACY</h2>
+          <div className="faculty-info-card">
+            <div className="content-text">
+              <p>The Faculty of Pharmacy at United University stands as a beacon of excellence in pharmaceutical education and research. Established with a vision to nurture competent pharmacy professionals, the faculty is committed to providing world-class education that bridges the gap between theoretical knowledge and practical application in the pharmaceutical sciences.</p>
+
+              <p>Our comprehensive curriculum encompasses all aspects of Pharmaceutical Sciences including Pharmaceutics, Pharmaceutical Chemistry, Pharmacology, Pharmacognosy, and Clinical Pharmacy. The faculty offers Bachelor of Pharmacy (B.Pharm) and Diploma in Pharmacy (D.Pharm) programs, designed to meet the evolving needs of the pharmaceutical industry and healthcare sector.</p>
+
+              <p>Equipped with state-of-the-art laboratories, modern instrumentation, and advanced research facilities, the faculty provides students with hands-on experience in drug discovery, formulation development, quality control, and clinical research. Our experienced faculty members, with their diverse expertise and industry connections, ensure that students receive comprehensive training that prepares them for successful careers in pharmaceutical manufacturing, research and development, regulatory affairs, clinical practice, and academia.</p>
+
+              <p>The faculty is dedicated to fostering innovation, research excellence, and ethical practice in Pharmaceutical Sciences, contributing to the advancement of healthcare and the betterment of society through quality pharmaceutical education and research initiatives.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+    </div>
+  );
+};
+
+export default Home;

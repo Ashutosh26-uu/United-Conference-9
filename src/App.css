@@ -1,0 +1,1121 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow-x: hidden;
+  /* Prevent horizontal scroll on all devices */
+}
+
+body {
+  font-family: 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+  line-height: 1.6;
+  color: #333;
+  scroll-behavior: smooth;
+  /* Optimize text rendering for all devices */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Responsive viewport meta tag enforcement */
+@viewport {
+  width: device-width;
+  zoom: 1.0;
+}
+
+/* Prevent zoom on form inputs on iOS */
+input, select, textarea {
+  font-size: 16px;
+}
+
+@media (max-width: 480px) {
+  input, select, textarea {
+    font-size: 16px !important;
+  }
+}
+
+/* Enhanced global responsive media styles */
+img,
+video,
+iframe,
+embed,
+object,
+svg {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  /* Improve image loading performance */
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+}
+
+/* Responsive images with proper aspect ratio */
+img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  /* Prevent layout shift during image loading */
+  aspect-ratio: attr(width) / attr(height);
+}
+
+/* Responsive video containers */
+video {
+  width: 100%;
+  height: auto;
+}
+
+/* Responsive iframe containers */
+iframe {
+  width: 100%;
+  border: 0;
+}
+
+/* Responsive containers */
+.slideshow-container,
+.hero-section,
+.image-container,
+.media-container {
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+  margin: 0;
+  padding: 0;
+}
+
+/* Responsive images with aspect ratio */
+.responsive-image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  display: block;
+}
+
+/* Responsive background images */
+.bg-responsive {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.App {
+  text-align: center;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  min-height: 100vh;
+  position: relative;
+  padding-top: 0;
+  /* Ensure proper rendering on all devices */
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.App::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="dots" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="rgba(102, 126, 234, 0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23dots)"/></svg>');
+  z-index: -1;
+  opacity: 0.5;
+}
+
+main {
+  width: 100%;
+  position: relative;
+  z-index: 1;
+  padding: 0;
+}
+
+section {
+  width: 100%;
+  min-height: auto;
+  padding: 2rem 1rem;
+  position: relative;
+  margin: 1.5rem 0;
+  transition: all 0.3s ease;
+}
+
+/* Override section styles for home to remove all spacing */
+section#home {
+  padding: 0 !important;
+  margin: 0 !important;
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+section:hover {
+  transform: translateY(-2px);
+}
+
+/* Enhanced Section Styling */
+#home {
+  min-height: 100vh;
+  margin: 0 !important;
+  padding: 0 !important;
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+  position: relative;
+  top: 0;
+}
+
+#prayagraj,
+#key-areas,
+#important-dates,
+#papers,
+#registration,
+#venue,
+#speakers,
+#important-updates,
+#organizing-committee,
+#sponsors {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  margin: 2rem auto;
+  max-width: 95%;
+  overflow: hidden;
+  position: relative;
+  padding: 2rem 1.5rem;
+}
+
+#prayagraj::before,
+#key-areas::before,
+#important-dates::before,
+#papers::before,
+#registration::before,
+#venue::before,
+#speakers::before,
+#important-updates::before,
+#organizing-committee::before,
+#sponsors::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(102, 126, 234, 0.1), transparent);
+  transition: left 0.6s ease;
+  z-index: 1;
+}
+
+#prayagraj:hover::before,
+#key-areas:hover::before,
+#important-dates:hover::before,
+#papers:hover::before,
+#registration:hover::before,
+#venue:hover::before,
+#speakers:hover::before,
+#important-updates:hover::before,
+#organizing-committee:hover::before,
+#sponsors:hover::before {
+  left: 100%;
+}
+
+/* Content containers */
+.section-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Professional Animation Classes */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulse {
+
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+/* Section Animation Classes */
+.animate-fade-in {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.animate-slide-left {
+  animation: slideInLeft 0.8s ease-out forwards;
+}
+
+.animate-slide-right {
+  animation: slideInRight 0.8s ease-out forwards;
+}
+
+/* Mobile-first responsive adjustments - REMOVED CONFLICTING RULES */
+/* Base mobile styles */
+.App {
+  padding-top: 0;
+}
+
+main {
+  padding: 0;
+}
+
+section {
+  padding: 1rem 0.5rem;
+  margin: 0.75rem 0;
+}
+
+/* Home section - NO spacing */
+#home {
+  margin: 0 !important;
+  padding: 0 !important;
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+/* Mobile specific adjustments - REMOVED CONFLICTING RULES */
+@media (max-width: 768px) {
+  .App {
+    padding-top: 0;
+  }
+  
+  #home {
+    margin: 0 !important;
+    padding: 0 !important;
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .App {
+    padding-top: 0;
+  }
+  
+  #home {
+    margin: 0 !important;
+    padding: 0 !important;
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+  }
+}
+
+#prayagraj,
+#key-areas,
+#important-dates,
+#papers,
+#registration,
+#venue,
+#speakers,
+#important-updates,
+#organizing-committee,
+#sponsors {
+  max-width: 100%;
+  border-radius: 12px;
+  margin: 0.75rem auto;
+  padding: 1.25rem 0.75rem;
+}
+
+/* Small tablets (576px and up) */
+@media (min-width: 576px) {
+  .App {
+    padding-top: 0;
+  }
+  
+  #home {
+    margin: 0 !important;
+    padding: 0 !important;
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+  }
+  
+  #prayagraj,
+  #key-areas,
+  #important-dates,
+  #papers,
+  #registration,
+  #venue,
+  #speakers,
+  #important-updates,
+  #organizing-committee,
+  #sponsors {
+    max-width: 98%;
+    border-radius: 15px;
+    margin: 1rem auto;
+    padding: 1.5rem 1rem;
+  }
+}
+
+/* Tablets (768px and up) */
+@media (min-width: 768px) {
+  .App {
+    padding-top: 0;
+  }
+  
+  main {
+    padding: 0 0.5rem;
+  }
+  
+  section {
+    padding: 1.5rem 0.75rem;
+    margin: 1rem 0;
+  }
+  
+  #home {
+    margin: 0 !important;
+    padding: 0 !important;
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+  }
+  
+  #prayagraj,
+  #key-areas,
+  #important-dates,
+  #papers,
+  #registration,
+  #venue,
+  #speakers,
+  #important-updates,
+  #organizing-committee,
+  #sponsors {
+    max-width: 96%;
+    border-radius: 18px;
+    margin: 1.25rem auto;
+    padding: 1.75rem 1.25rem;
+  }
+}
+
+/* Laptops (992px and up) */
+@media (min-width: 992px) {
+  .App {
+    padding-top: 0;
+  }
+  
+  main {
+    padding: 0 1rem;
+  }
+  
+  section {
+    padding: 2rem 1rem;
+    margin: 1.5rem 0;
+  }
+  
+  #home {
+    margin: 0 !important;
+    padding: 0 !important;
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+  }
+  
+  #prayagraj,
+  #key-areas,
+  #important-dates,
+  #papers,
+  #registration,
+  #venue,
+  #speakers,
+  #important-updates,
+  #organizing-committee,
+  #sponsors {
+    max-width: 94%;
+    border-radius: 20px;
+    margin: 1.5rem auto;
+    padding: 2rem 1.5rem;
+  }
+}
+
+/* Large screens (1200px and up) */
+@media (min-width: 1200px) {
+  .App {
+    padding-top: 0;
+  }
+  
+  main {
+    padding: 0 1.5rem;
+  }
+  
+  section {
+    padding: 2.5rem 1.5rem;
+    margin: 2rem 0;
+  }
+  
+  #home {
+    margin: 0 !important;
+    padding: 0 !important;
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+  }
+  
+  #prayagraj,
+  #key-areas,
+  #important-dates,
+  #papers,
+  #registration,
+  #venue,
+  #speakers,
+  #important-updates,
+  #organizing-committee,
+  #sponsors {
+    max-width: 92%;
+    margin: 2rem auto;
+    padding: 2.5rem 2rem;
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-bottom: 1rem;
+  color: #2c3e50;
+}
+
+/* Enhanced Responsive Design - Mobile First Approach */
+/* Base styles for mobile (320px and up) */
+.container {
+  width: 100%;
+  max-width: 100%;
+  padding: 0 1rem;
+  margin: 0 auto;
+}
+
+.section {
+  padding: 1.5rem 1rem;
+}
+
+/* Small tablets and large phones (576px and up) */
+@media (min-width: 576px) {
+  .container {
+    max-width: 540px;
+    padding: 0 1.25rem;
+  }
+  
+  .section {
+    padding: 2rem 1.25rem;
+  }
+}
+
+/* Tablets (768px and up) */
+@media (min-width: 768px) {
+  .container {
+    max-width: 720px;
+    padding: 0 1.5rem;
+  }
+  
+  .section {
+    padding: 2.5rem 1.5rem;
+  }
+}
+
+/* Small laptops (992px and up) */
+@media (min-width: 992px) {
+  .container {
+    max-width: 960px;
+    padding: 0 1.75rem;
+  }
+  
+  .section {
+    padding: 3rem 1.75rem;
+  }
+}
+
+/* Large laptops and desktops (1200px and up) */
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1140px;
+    padding: 0 2rem;
+  }
+  
+  .section {
+    padding: 3.5rem 2rem;
+  }
+}
+
+/* Extra large screens (1400px and up) */
+@media (min-width: 1400px) {
+  .container {
+    max-width: 1320px;
+  }
+}
+
+@media (max-width: 992px) {
+  .container {
+    max-width: 98%;
+    padding: 0 0.75rem;
+  }
+
+  .section {
+    padding: 2.5rem 1rem;
+  }
+
+  /* Navigation adjustments */
+  .nav-links {
+    gap: 1rem;
+  }
+
+  .nav-links a {
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    max-width: 100%;
+    padding: 0 0.5rem;
+  }
+
+  .section {
+    padding: 2rem 0.75rem;
+    margin: 1rem 0;
+  }
+
+  /* Typography scaling */
+  h1 {
+    font-size: 2rem;
+  }
+
+  h2 {
+    font-size: 1.75rem;
+  }
+
+  h3 {
+    font-size: 1.5rem;
+  }
+
+  /* Button adjustments */
+  .btn {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.9rem;
+  }
+
+  /* Grid layouts */
+  .grid-2 {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .grid-3 {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 0.25rem;
+  }
+
+  .section {
+    padding: 1.5rem 0.5rem;
+    margin: 0.75rem 0;
+  }
+
+  /* Typography for mobile */
+  h1 {
+    font-size: 1.75rem;
+    line-height: 1.2;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    line-height: 1.3;
+  }
+
+  h3 {
+    font-size: 1.25rem;
+    line-height: 1.4;
+  }
+
+  p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+
+  /* Button adjustments */
+  .btn {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.85rem;
+    width: 100%;
+    max-width: 280px;
+    margin: 0 auto;
+  }
+
+  /* All grids become single column */
+  .grid-2,
+  .grid-3,
+  .grid-4 {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  /* Card adjustments */
+  .card {
+    padding: 1rem;
+    margin: 0.5rem 0;
+  }
+
+  /* Image responsiveness */
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  /* Responsive media elements */
+  .slideshow-container,
+  .hero-section,
+  .speaker-image,
+  .venue-image,
+  .committee-image,
+  .logo-image {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Responsive video and iframe */
+  video,
+  iframe,
+  embed,
+  object {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+/* Touch-friendly improvements */
+@media (hover: none) and (pointer: coarse) {
+  .btn,
+  .nav-links a,
+  .card,
+  .cta-button,
+  .download-btn,
+  .social-link {
+    min-height: 48px;
+    min-width: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    touch-action: manipulation;
+  }
+
+  .btn:hover,
+  .nav-links a:hover,
+  .card:hover,
+  .cta-button:hover,
+  .download-btn:hover,
+  .social-link:hover {
+    transform: none;
+  }
+
+  .btn:active,
+  .nav-links a:active,
+  .card:active,
+  .cta-button:active,
+  .download-btn:active,
+  .social-link:active {
+    transform: scale(0.95);
+    transition: transform 0.1s ease;
+  }
+}
+
+/* iPad and tablet specific styles */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .App {
+    padding-top: 0;
+  }
+  
+  section {
+    padding: 2rem 1.5rem;
+    margin: 1.5rem 0;
+  }
+  
+  #prayagraj,
+  #key-areas,
+  #important-dates,
+  #papers,
+  #registration,
+  #venue,
+  #speakers,
+  #important-updates,
+  #organizing-committee,
+  #sponsors {
+    max-width: 95%;
+    padding: 2rem 1.5rem;
+  }
+  
+  h1 {
+    font-size: 2.5rem;
+  }
+  
+  h2 {
+    font-size: 2rem;
+  }
+  
+  h3 {
+    font-size: 1.7rem;
+  }
+}
+
+/* Large phones and small tablets */
+@media (min-width: 576px) and (max-width: 767px) {
+  .App {
+    padding-top: 0;
+  }
+  
+  section {
+    padding: 1.8rem 1.2rem;
+    margin: 1.2rem 0;
+  }
+  
+  #prayagraj,
+  #key-areas,
+  #important-dates,
+  #papers,
+  #registration,
+  #venue,
+  #speakers,
+  #important-updates,
+  #organizing-committee,
+  #sponsors {
+    max-width: 98%;
+    padding: 1.8rem 1.2rem;
+  }
+}
+
+/* Ultra-wide screens */
+@media (min-width: 1920px) {
+  .container {
+    max-width: 1600px;
+  }
+  
+  section {
+    padding: 4rem 2.5rem;
+  }
+  
+  #prayagraj,
+  #key-areas,
+  #important-dates,
+  #papers,
+  #registration,
+  #venue,
+  #speakers,
+  #important-updates,
+  #organizing-committee,
+  #sponsors {
+    max-width: 90%;
+    padding: 3rem 2.5rem;
+  }
+}
+
+/* Landscape orientation adjustments */
+@media (max-width: 768px) and (orientation: landscape) {
+  .section {
+    padding: 1.5rem 1rem;
+  }
+
+  .slideshow-container {
+    height: 100vh;
+  }
+}
+
+/* High DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2),
+(min-resolution: 192dpi) {
+
+  .logo-image,
+  .speaker-image img,
+  .committee-image img {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+}
+
+/* ===== COMPREHENSIVE RESPONSIVE UTILITIES ===== */
+
+/* Container utilities for all devices */
+.container-fluid {
+  width: 100%;
+  padding: 0 1rem;
+  margin: 0 auto;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  padding: 0 1rem;
+  margin: 0 auto;
+}
+
+/* Responsive text utilities */
+.text-responsive {
+  font-size: clamp(0.875rem, 2.5vw, 1.125rem);
+  line-height: 1.6;
+}
+
+.heading-responsive {
+  font-size: clamp(1.5rem, 4vw, 3rem);
+  line-height: 1.2;
+}
+
+.subheading-responsive {
+  font-size: clamp(1.125rem, 3vw, 1.5rem);
+  line-height: 1.4;
+}
+
+/* Responsive spacing utilities */
+.py-responsive {
+  padding-top: clamp(1rem, 3vw, 3rem);
+  padding-bottom: clamp(1rem, 3vw, 3rem);
+}
+
+.px-responsive {
+  padding-left: clamp(0.5rem, 2vw, 2rem);
+  padding-right: clamp(0.5rem, 2vw, 2rem);
+}
+
+.my-responsive {
+  margin-top: clamp(0.5rem, 2vw, 2rem);
+  margin-bottom: clamp(0.5rem, 2vw, 2rem);
+}
+
+/* Responsive grid utilities */
+.grid-responsive {
+  display: grid;
+  gap: clamp(1rem, 3vw, 2rem);
+  grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+}
+
+.grid-responsive-2 {
+  display: grid;
+  gap: clamp(1rem, 3vw, 2rem);
+  grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
+}
+
+.grid-responsive-3 {
+  display: grid;
+  gap: clamp(0.75rem, 2vw, 1.5rem);
+  grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
+}
+
+/* Responsive flex utilities */
+.flex-responsive {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(0.5rem, 2vw, 1.5rem);
+}
+
+.flex-responsive > * {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+/* Device-specific optimizations */
+
+/* Mobile phones (portrait) */
+@media (max-width: 480px) {
+  .container {
+    padding: 0 0.75rem;
+  }
+  
+  section {
+    padding: 1.5rem 0.75rem;
+    margin: 1rem 0;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    margin-bottom: 0.75rem;
+  }
+  
+  p {
+    margin-bottom: 1rem;
+  }
+  
+  .btn {
+    padding: 0.75rem 1.25rem;
+    font-size: 0.9rem;
+    width: 100%;
+    max-width: 280px;
+  }
+}
+
+/* Mobile phones (landscape) */
+@media (max-width: 896px) and (orientation: landscape) {
+  section {
+    padding: 1rem 0.75rem;
+  }
+  
+  .container {
+    padding: 0 1rem;
+  }
+}
+
+/* Tablets (portrait) */
+@media (min-width: 481px) and (max-width: 768px) {
+  .container {
+    padding: 0 1.25rem;
+  }
+  
+  section {
+    padding: 2rem 1.25rem;
+    margin: 1.5rem 0;
+  }
+  
+  .btn {
+    padding: 0.875rem 1.5rem;
+    font-size: 1rem;
+  }
+}
+
+/* Tablets (landscape) and small laptops */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .container {
+    padding: 0 1.5rem;
+  }
+  
+  section {
+    padding: 2.5rem 1.5rem;
+    margin: 2rem 0;
+  }
+}
+
+/* Large tablets and laptops */
+@media (min-width: 1025px) and (max-width: 1440px) {
+  .container {
+    padding: 0 2rem;
+  }
+  
+  section {
+    padding: 3rem 2rem;
+    margin: 2.5rem 0;
+  }
+}
+
+/* Large desktops */
+@media (min-width: 1441px) {
+  .container {
+    max-width: 1400px;
+    padding: 0 2.5rem;
+  }
+  
+  section {
+    padding: 4rem 2.5rem;
+    margin: 3rem 0;
+  }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+  /* Increase touch targets */
+  button, .btn, a, input, select, textarea {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Remove hover effects on touch devices */
+  *:hover {
+    transform: none !important;
+  }
+  
+  /* Add active states for better feedback */
+  button:active, .btn:active, a:active {
+    transform: scale(0.95);
+    transition: transform 0.1s ease;
+  }
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  * {
+    border-color: currentColor !important;
+  }
+  
+  .btn {
+    border: 2px solid currentColor !important;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+  }
+}
+
+/* Print styles */
+@media print {
+  * {
+    background: white !important;
+    color: black !important;
+    box-shadow: none !important;
+  }
+  
+  .header, .menu-toggle, .nav {
+    display: none !important;
+  }
+  
+  section {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+}

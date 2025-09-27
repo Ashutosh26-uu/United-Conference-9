@@ -1,0 +1,407 @@
+/* Professional Scroll to Top with Progress Ring */
+.scroll-to-top-professional {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  z-index: 1000;
+}
+
+.scroll-to-top-professional.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.scroll-to-top-professional:hover {
+  transform: translateY(-3px) scale(1.1);
+}
+
+.progress-ring {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: rotate(-90deg);
+  filter: drop-shadow(0 2px 8px rgba(102, 126, 234, 0.3));
+}
+
+.progress-ring-circle {
+  transition: stroke-dashoffset 0.3s ease;
+}
+
+.scroll-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #667eea;
+  font-size: 16px;
+  font-weight: bold;
+  background: white;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Professional Progress Bar */
+.progress-container-professional {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  z-index: 1001;
+  backdrop-filter: blur(10px);
+}
+
+.progress-bar-professional {
+  height: 100%;
+  background: linear-gradient(90deg, #667eea, #764ba2, #f093fb);
+  transition: width 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  position: relative;
+  overflow: hidden;
+}
+
+.progress-glow {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 20px;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6));
+  animation: glow-move 2s ease-in-out infinite;
+}
+
+.section-indicator {
+  position: fixed;
+  top: 15px;
+  right: 20px;
+  background: rgba(102, 126, 234, 0.9);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  z-index: 1002;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+@keyframes glow-move {
+  0%, 100% { transform: translateX(-100%); }
+  50% { transform: translateX(0); }
+}
+
+.scroll-to-top {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, #f97316, #ea580c);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: bold;
+  box-shadow: 0 4px 15px rgba(249, 115, 22, 0.3);
+  transition: all 0.3s ease;
+  opacity: 0;
+  visibility: hidden;
+  z-index: 1000;
+}
+
+.scroll-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.scroll-to-top:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(249, 115, 22, 0.4);
+}
+
+.progress-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.2);
+  z-index: 1001;
+}
+
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #f97316, #dc3545);
+  transition: width 0.1s ease;
+}
+
+/* Professional Button with Ripple Effect */
+.professional-btn {
+  position: relative;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  outline: none;
+}
+
+.professional-btn.primary {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+.professional-btn.secondary {
+  background: linear-gradient(135deg, #f093fb, #f5576c);
+  color: white;
+  box-shadow: 0 4px 15px rgba(240, 147, 251, 0.3);
+}
+
+.professional-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+}
+
+.professional-btn:active {
+  transform: translateY(0);
+}
+
+.btn-content {
+  position: relative;
+  z-index: 2;
+}
+
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.6);
+  transform: scale(0);
+  animation: ripple-animation 0.6s linear;
+  pointer-events: none;
+}
+
+@keyframes ripple-animation {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+/* Professional Counter */
+.professional-counter {
+  display: inline-block;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.counter-value {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 700;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: inline-block;
+  transition: all 0.3s ease;
+}
+
+/* Staggered Animations */
+.staggered-container {
+  opacity: 1;
+}
+
+.stagger-item {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.staggered-container.animate .stagger-item {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Parallax Elements */
+.parallax-element {
+  will-change: transform;
+}
+
+/* Fade In Sections */
+.fade-in-section {
+  opacity: 0;
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.fade-in-section.fade-up {
+  transform: translateY(50px);
+}
+
+.fade-in-section.fade-down {
+  transform: translateY(-50px);
+}
+
+.fade-in-section.fade-left {
+  transform: translateX(-50px);
+}
+
+.fade-in-section.fade-right {
+  transform: translateX(50px);
+}
+
+.fade-in-section.visible {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+
+/* Advanced CSS Animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(102, 126, 234, 0.3); }
+  50% { box-shadow: 0 0 40px rgba(102, 126, 234, 0.6); }
+}
+
+@keyframes slide-in-blur {
+  0% {
+    opacity: 0;
+    transform: translateX(-100px);
+    filter: blur(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+    filter: blur(0);
+  }
+}
+
+/* Utility Classes */
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.animate-slide-blur {
+  animation: slide-in-blur 0.8s ease-out;
+}
+
+/* Hover Effects */
+.hover-lift {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.hover-scale {
+  transition: transform 0.3s ease;
+}
+
+.hover-scale:hover {
+  transform: scale(1.05);
+}
+
+.interactive-elements {
+  pointer-events: none;
+}
+
+.interactive-elements > * {
+  pointer-events: auto;
+}
+
+/* Professional Card Hover Effects */
+.professional-card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  border-radius: 16px;
+  padding: 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  position: relative;
+  overflow: hidden;
+}
+
+.professional-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(102, 126, 234, 0.1), transparent);
+  transition: left 0.6s ease;
+}
+
+.professional-card:hover::before {
+  left: 100%;
+}
+
+.professional-card:hover {
+  transform: translateY(-8px) rotateX(5deg);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  border-color: rgba(102, 126, 234, 0.3);
+}
+
+/* Loading Animation */
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(102, 126, 234, 0.2);
+  border-top: 4px solid #667eea;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .scroll-to-top-professional {
+    bottom: 20px;
+    right: 20px;
+    width: 45px;
+    height: 45px;
+  }
+  
+  .section-indicator {
+    top: 10px;
+    right: 15px;
+    font-size: 9px;
+    padding: 3px 8px;
+  }
+  
+  .professional-btn {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+}
